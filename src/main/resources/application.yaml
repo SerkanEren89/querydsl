@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: QuerydslExample
+  datasource:
+    url: jdbc:h2:mem:test
+    username: sa
+    password: sa
+    platform: H2
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+server:
+  port: 8082

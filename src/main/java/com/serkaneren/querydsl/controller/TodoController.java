@@ -32,13 +32,13 @@ public class TodoController {
     }
 
     @GetMapping
-    public Page<TodoDto> searchTodo(@RequestParam(value = "startDate") final Optional<Date> startDate,
-                                    @RequestParam(value = "endDate") final Optional<Date> endDate,
+    public Page<TodoDto> searchTodo(@RequestParam(value = "startDate", required = false) final Date startDate,
+                                    @RequestParam(value = "endDate", required = false) final Date endDate,
                                     @RequestParam(value = "active", defaultValue = "true") final boolean active,
                                     @RequestParam(value = "searchText", defaultValue = "") final String searchText,
                                     @RequestParam(value = "pageNumber", defaultValue = "0") final int pageNumber,
                                     @RequestParam(value = "pageSize", defaultValue = "100") final int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        return todoService.searchTodo(startDate.orElse(null), endDate.orElse(null), active, searchText, pageable);
+        return todoService.searchTodo(startDate, endDate, active, searchText, pageable);
     }
 }

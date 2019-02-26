@@ -29,6 +29,7 @@ public interface TodoRepository extends JpaRepository<Todo, Long>, QuerydslPredi
             whereClause = whereClause.and(todo.endDate.loe(endDate));
         }
         if (!StringUtils.isEmpty(text)) {
+            text = "%" + text + "%";
             whereClause = whereClause.andAnyOf(todo.note.like(text), todo.title.like(text));
         }
         whereClause = whereClause.and(todo.active.eq(status));
